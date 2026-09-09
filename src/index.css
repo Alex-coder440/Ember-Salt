@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --color-charcoal: #121212;
+  --color-cream: #f5f2eb;
+  --color-burnt-orange: #d97736;
+  --color-ember-red: #8c2a1a;
+  --color-muted-gold: #c2a878;
+  
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}

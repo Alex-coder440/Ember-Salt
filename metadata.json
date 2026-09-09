@@ -1,0 +1,6 @@
+{
+  "name": "Ember & Salt",
+  "description": "A premium, modern restaurant built around open-fire cooking and communal dining.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
