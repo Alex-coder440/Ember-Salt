@@ -37,8 +37,8 @@ function ExperienceCard({ concept, index }: { concept: typeof concepts[0], index
       {/* Image Container */}
       <motion.div 
         className="w-full md:w-1/2"
-        initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
       >
