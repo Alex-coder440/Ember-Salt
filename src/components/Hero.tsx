@@ -1,7 +1,11 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 
-export function Hero() {
+interface HeroProps {
+  onOpenReservation?: () => void;
+}
+
+export function Hero({ onOpenReservation }: HeroProps) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -53,7 +57,11 @@ export function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <button className="border border-cream/20 hover:border-cream text-cream px-10 py-4 text-xs uppercase tracking-[0.2em] font-sans transition-colors duration-500 bg-transparent">
+          <button 
+            type="button"
+            onClick={onOpenReservation}
+            className="border border-cream/20 hover:border-cream text-cream px-10 py-4 text-xs uppercase tracking-[0.2em] font-sans transition-colors duration-500 bg-transparent cursor-pointer active:scale-95"
+          >
             Reserve a Table
           </button>
         </motion.div>

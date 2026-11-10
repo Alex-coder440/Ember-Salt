@@ -19,7 +19,7 @@ const concepts = [
   }
 ];
 
-function ExperienceCard({ concept, index }: { concept: typeof concepts[0], index: number }) {
+function ExperienceCard({ concept, index }: { concept: typeof concepts[0], index: number, key?: string }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,

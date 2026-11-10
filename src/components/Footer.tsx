@@ -1,6 +1,11 @@
 import { motion } from 'motion/react';
 
-export function Footer() {
+interface FooterProps {
+  onOpenReservation?: () => void;
+  onOpenMenu?: () => void;
+}
+
+export function Footer({ onOpenReservation, onOpenMenu }: FooterProps) {
   const navLinks = ['Home', 'Our Story', 'Menu', 'Gallery', 'Reservations', 'Contact'];
 
   return (
@@ -35,9 +40,27 @@ export function Footer() {
             <ul className="space-y-3">
               {navLinks.map((link) => (
                 <li key={link}>
-                  <a href={`#${link.toLowerCase().replace(' ', '-')}`} className="font-sans text-sm text-cream/80 hover:text-burnt-orange transition-colors uppercase tracking-wider">
-                    {link}
-                  </a>
+                  {link === 'Reservations' ? (
+                    <button
+                      type="button"
+                      onClick={onOpenReservation}
+                      className="font-sans text-sm text-cream/80 hover:text-burnt-orange transition-colors uppercase tracking-wider text-left cursor-pointer"
+                    >
+                      {link}
+                    </button>
+                  ) : link === 'Menu' && onOpenMenu ? (
+                    <button
+                      type="button"
+                      onClick={onOpenMenu}
+                      className="font-sans text-sm text-cream/80 hover:text-burnt-orange transition-colors uppercase tracking-wider text-left cursor-pointer"
+                    >
+                      {link}
+                    </button>
+                  ) : (
+                    <a href={`#${link.toLowerCase().replace(' ', '-')}`} className="font-sans text-sm text-cream/80 hover:text-burnt-orange transition-colors uppercase tracking-wider">
+                      {link}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

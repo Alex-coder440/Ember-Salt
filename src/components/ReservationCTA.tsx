@@ -1,7 +1,11 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 
-export function ReservationCTA() {
+interface ReservationCTAProps {
+  onOpenReservation?: () => void;
+}
+
+export function ReservationCTA({ onOpenReservation }: ReservationCTAProps) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -37,7 +41,11 @@ export function ReservationCTA() {
             "Good food tastes better when there's someone across the table."
           </p>
           
-          <button className="bg-burnt-orange hover:bg-ember-red text-cream px-10 py-5 text-sm uppercase tracking-widest font-sans transition-colors duration-300">
+          <button 
+            type="button"
+            onClick={onOpenReservation}
+            className="bg-burnt-orange hover:bg-ember-red text-cream px-10 py-5 text-sm uppercase tracking-widest font-sans transition-colors duration-300 cursor-pointer active:scale-95 shadow-lg shadow-black/40"
+          >
             Reserve a Table
           </button>
         </motion.div>

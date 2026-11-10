@@ -2,7 +2,11 @@ import { motion } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-export function Navbar() {
+interface NavbarProps {
+  onOpenMenu?: () => void;
+}
+
+export function Navbar({ onOpenMenu }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -27,21 +31,32 @@ export function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-24">
-          <div className="text-2xl font-serif tracking-widest text-cream uppercase">
+          <a href="#home" className="text-2xl font-serif tracking-widest text-cream uppercase hover:text-burnt-orange transition-colors">
             Ember & Salt
-          </div>
+          </a>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
             <div className="flex space-x-6">
               {navLinks.map((link) => (
-                <a
-                  key={link}
-                  href={`#${link.toLowerCase().replace(' ', '-')}`}
-                  className="text-sm font-sans tracking-widest text-cream/70 hover:text-burnt-orange transition-colors uppercase"
-                >
-                  {link}
-                </a>
+                link === 'Menu' && onOpenMenu ? (
+                  <button
+                    key={link}
+                    type="button"
+                    onClick={onOpenMenu}
+                    className="text-sm font-sans tracking-widest text-cream/70 hover:text-burnt-orange transition-colors uppercase cursor-pointer"
+                  >
+                    {link}
+                  </button>
+                ) : (
+                  <a
+                    key={link}
+                    href={`#${link.toLowerCase().replace(' ', '-')}`}
+                    className="text-sm font-sans tracking-widest text-cream/70 hover:text-burnt-orange transition-colors uppercase"
+                  >
+                    {link}
+                  </a>
+                )
               ))}
             </div>
           </div>
@@ -50,6 +65,7 @@ export function Navbar() {
           <button 
             className="md:hidden text-cream"
             onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open mobile menu"
           >
             <Menu size={28} />
           </button>
@@ -62,19 +78,34 @@ export function Navbar() {
           <button 
             className="absolute top-8 right-6 text-cream"
             onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close mobile menu"
           >
             <X size={32} />
           </button>
           <div className="flex flex-col items-center space-y-8">
             {navLinks.map((link) => (
-              <a
-                key={link}
-                href={`#${link.toLowerCase().replace(' ', '-')}`}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-2xl font-serif text-cream hover:text-burnt-orange transition-colors uppercase"
-              >
-                {link}
-              </a>
+              link === 'Menu' && onOpenMenu ? (
+                <button
+                  key={link}
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenMenu();
+                  }}
+                  className="text-2xl font-serif text-cream hover:text-burnt-orange transition-colors uppercase cursor-pointer"
+                >
+                  {link}
+                </button>
+              ) : (
+                <a
+                  key={link}
+                  href={`#${link.toLowerCase().replace(' ', '-')}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-2xl font-serif text-cream hover:text-burnt-orange transition-colors uppercase"
+                >
+                  {link}
+                </a>
+              )
             ))}
           </div>
         </div>

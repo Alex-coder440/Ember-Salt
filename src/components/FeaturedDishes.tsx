@@ -39,7 +39,11 @@ const dishes = [
   }
 ];
 
-export function FeaturedDishes() {
+interface FeaturedDishesProps {
+  onOpenMenu?: () => void;
+}
+
+export function FeaturedDishes({ onOpenMenu }: FeaturedDishesProps) {
   return (
     <section className="bg-[#0f0f0f] py-20 md:py-32 px-6" id="menu">
       <div className="max-w-7xl mx-auto">
@@ -55,13 +59,17 @@ export function FeaturedDishes() {
           </motion.div>
           
           <motion.div
-            initial={{ opacity: 0, opacity: 1 }}
+            initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.2 }}
             className="hidden md:block"
           >
-            <button className="border-b border-burnt-orange text-cream pb-1 font-sans text-sm tracking-widest uppercase hover:text-burnt-orange transition-colors">
+            <button 
+              type="button"
+              onClick={onOpenMenu}
+              className="border-b border-burnt-orange text-cream pb-1 font-sans text-sm tracking-widest uppercase hover:text-burnt-orange transition-colors cursor-pointer"
+            >
               View Full Menu
             </button>
           </motion.div>
@@ -99,7 +107,11 @@ export function FeaturedDishes() {
         </div>
         
         <div className="mt-16 text-center md:hidden">
-          <button className="border border-burnt-orange text-cream px-8 py-4 font-sans text-sm tracking-widest uppercase hover:bg-burnt-orange transition-colors w-full">
+          <button 
+            type="button"
+            onClick={onOpenMenu}
+            className="border border-burnt-orange text-cream px-8 py-4 font-sans text-sm tracking-widest uppercase hover:bg-burnt-orange transition-colors w-full cursor-pointer"
+          >
             View Full Menu
           </button>
         </div>
