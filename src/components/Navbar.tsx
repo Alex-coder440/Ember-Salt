@@ -2,11 +2,7 @@ import { motion } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-interface NavbarProps {
-  onOpenMenu?: () => void;
-}
-
-export function Navbar({ onOpenMenu }: NavbarProps) {
+export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -39,24 +35,13 @@ export function Navbar({ onOpenMenu }: NavbarProps) {
           <div className="hidden md:flex items-center space-x-8">
             <div className="flex space-x-6">
               {navLinks.map((link) => (
-                link === 'Menu' && onOpenMenu ? (
-                  <button
-                    key={link}
-                    type="button"
-                    onClick={onOpenMenu}
-                    className="text-sm font-sans tracking-widest text-cream/70 hover:text-burnt-orange transition-colors uppercase cursor-pointer"
-                  >
-                    {link}
-                  </button>
-                ) : (
-                  <a
-                    key={link}
-                    href={`#${link.toLowerCase().replace(' ', '-')}`}
-                    className="text-sm font-sans tracking-widest text-cream/70 hover:text-burnt-orange transition-colors uppercase"
-                  >
-                    {link}
-                  </a>
-                )
+                <a
+                  key={link}
+                  href={`#${link.toLowerCase().replace(' ', '-')}`}
+                  className="text-sm font-sans tracking-widest text-cream/70 hover:text-burnt-orange transition-colors uppercase"
+                >
+                  {link}
+                </a>
               ))}
             </div>
           </div>
@@ -84,28 +69,14 @@ export function Navbar({ onOpenMenu }: NavbarProps) {
           </button>
           <div className="flex flex-col items-center space-y-8">
             {navLinks.map((link) => (
-              link === 'Menu' && onOpenMenu ? (
-                <button
-                  key={link}
-                  type="button"
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenMenu();
-                  }}
-                  className="text-2xl font-serif text-cream hover:text-burnt-orange transition-colors uppercase cursor-pointer"
-                >
-                  {link}
-                </button>
-              ) : (
-                <a
-                  key={link}
-                  href={`#${link.toLowerCase().replace(' ', '-')}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-2xl font-serif text-cream hover:text-burnt-orange transition-colors uppercase"
-                >
-                  {link}
-                </a>
-              )
+              <a
+                key={link}
+                href={`#${link.toLowerCase().replace(' ', '-')}`}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-2xl font-serif text-cream hover:text-burnt-orange transition-colors uppercase"
+              >
+                {link}
+              </a>
             ))}
           </div>
         </div>

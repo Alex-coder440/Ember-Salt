@@ -1,7 +1,11 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 
-export function Story() {
+interface StoryProps {
+  onOpenStory?: () => void;
+}
+
+export function Story({ onOpenStory }: StoryProps) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -62,8 +66,12 @@ export function Story() {
             </p>
           </div>
           
-          <button className="border-b border-cream text-cream pb-1 font-sans text-sm tracking-widest uppercase hover:text-burnt-orange hover:border-burnt-orange transition-colors">
-            Discover Our Story
+          <button 
+            type="button"
+            onClick={onOpenStory}
+            className="border-b border-cream text-cream pb-1 font-sans text-sm tracking-widest uppercase hover:text-burnt-orange hover:border-burnt-orange transition-colors cursor-pointer"
+          >
+            View Full Story
           </button>
         </motion.div>
 

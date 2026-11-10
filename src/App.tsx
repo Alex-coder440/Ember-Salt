@@ -15,10 +15,12 @@ import { ReservationCTA } from './components/ReservationCTA';
 import { Footer } from './components/Footer';
 import { ReservationModal } from './components/ReservationModal';
 import { FullScreenMenu } from './components/FullScreenMenu';
+import { FullStoryModal } from './components/FullStoryModal';
 
 export default function App() {
   const [isReservationOpen, setIsReservationOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isStoryOpen, setIsStoryOpen] = useState(false);
 
   const handleOpenReservation = () => {
     setIsReservationOpen(true);
@@ -36,19 +38,34 @@ export default function App() {
     setIsMenuOpen(false);
   };
 
+  const handleOpenStory = () => {
+    setIsStoryOpen(true);
+  };
+
+  const handleCloseStory = () => {
+    setIsStoryOpen(false);
+  };
+
   return (
     <main className="bg-charcoal min-h-screen">
-      <Navbar onOpenMenu={handleOpenMenu} />
+      <Navbar />
       <Hero onOpenReservation={handleOpenReservation} />
       <Intro />
       <Experience />
       <FeaturedDishes onOpenMenu={handleOpenMenu} />
-      <Story />
+      <Story onOpenStory={handleOpenStory} />
       <Gallery />
       <ReservationCTA onOpenReservation={handleOpenReservation} />
       <Footer 
         onOpenReservation={handleOpenReservation} 
         onOpenMenu={handleOpenMenu} 
+      />
+
+      {/* Full-Screen Story Overlay */}
+      <FullStoryModal
+        isOpen={isStoryOpen}
+        onClose={handleCloseStory}
+        onOpenReservation={handleOpenReservation}
       />
 
       {/* Full-Screen Premium Menu Overlay */}
